@@ -11,6 +11,14 @@ export default class SortingVisualizer extends React.Component{
   componentDidMount(){
       this.restArray();
   }
+  /*Quick Sort.
+Bubble Sort.
+Merge Sort.
+Insertion Sort.
+Selection Sort.
+Heap Sort.
+Radix Sort.
+Bucket Sort.*/
   restArray(){
       const array = [];
       for(let i=0;i<270;i++){
@@ -30,6 +38,21 @@ export default class SortingVisualizer extends React.Component{
   bubblesort(){
 
   }
+  radixsort(){
+
+ }
+ insertionsort(){
+
+ }
+ selectionsort(){
+
+ }
+ shellsort(){
+
+ }
+ countingsort(){
+
+ }
   render(){
       const{array} = this.state;
       return(
@@ -45,6 +68,11 @@ export default class SortingVisualizer extends React.Component{
        <button onClick={() => this.quicksort()}>Quick Sort</button>
        <button onClick={() => this.heapsort()}>Heap Sort</button>
        <button onClick={() => this.bubblesort()}>Bubble Sort</button>
+       <button onClick={() => this.radixsort()}>Radix Sort</button>
+       <button onClick={() => this.insertionsort()}>Insertion Sort</button>
+       <button onClick={() => this.selectionsort()}>Selection Sort</button>
+       <button onClick={() => this.shellsort()}>Shell Sort</button>
+       <button onClick={() => this.countingsort()}>Counting Sort</button>
           </div>
       );
   }
