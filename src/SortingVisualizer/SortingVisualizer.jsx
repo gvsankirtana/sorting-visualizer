@@ -12,17 +12,9 @@ export default class SortingVisualizer extends React.Component{
   componentDidMount(){
       this.restArray();
   }
-  /*Quick Sort.
-Bubble Sort.
-Merge Sort.
-Insertion Sort.
-Selection Sort.
-Heap Sort.
-Radix Sort.
-Bucket Sort.*/
   restArray(){
       const array = [];
-      for(let i=0;i<280;i++){
+      for(let i=0;i<270;i++){
           array.push(randomIntFromInterval(5,500));
       }
       this.setState({array});
@@ -42,7 +34,7 @@ Bucket Sort.*/
             const [barOneIdx,barTwoIdx] = newAnimations[i];
             const barOneStyle = arrayBars[barOneIdx].style;
             const barTwoStyle = arrayBars[barTwoIdx].style;
-            const color = i % 3 === 0 ? 'red' : 'blue';
+            const color = i % 3 === 0 ? 'red' : 'green';
             setTimeout(() => {
              barOneStyle.backgroundColor = color;
              barTwoStyle.backgroundColor = color;
@@ -57,27 +49,41 @@ Bucket Sort.*/
     }
 }
   }
-   quicksort(){
- 
+   selectionSort(){
+    const animations = sortingAlgorithms.selectionSort(this.state.array);
+    for (let i = 0; i < animations.length; i++){
+      const arrayBars = document.getElementsByClassName('array-bar');
+      const isColorChange = (i % 4 === 0 || i % 4 === 1);
+      if(isColorChange) {
+        const [barOne, barTwo] = animations[i];
+        const barOneStyle = arrayBars[barOne].style;
+        const barTwoStyle = arrayBars[barTwo].style;
+        const color = i % 4 === 0? 'red' : 'green';
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * 2);
+      } else {
+        setTimeout(() => {
+          const [barOne, newHeightOne] = animations[i];
+          const [barTwo, newHeightTwo] = animations[i];
+          const barOneStyle = arrayBars[barOne].style;
+          const barTwoStyle = arrayBars[barTwo].style;
+          barOneStyle.height = `${newHeightOne}px`;
+          barTwoStyle.height = `${newHeightTwo}px`;
+        }, i * 2)
+      }
+    }
    }
    heapsort(){
  
    }
    bubblesort(){
- 
+       
    }
-   /*testSortingAlgorithms(){
-       for(let i=0;i<100;i++){
-           const array = [];
-           const length = randomIntFromInterval(1,1000);
-           for(let i=0;i<length;i++){
-               array.push(randomIntFromInterval(-1000,1000));
-           }
-           const JavaScriptSortedArray = array.slice().sort((a,b)=>a-b);
-           const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
-           console.log(arraysAreEqual(JavaScriptSortedArray,mergeSortedArray));
-       }
-   }*/
+   quicksort(){
+
+   }
   render(){
       const{array} = this.state;
       return(
@@ -90,10 +96,10 @@ Bucket Sort.*/
        ))}
        <button onClick={() => this.restArray()}>Generate New Array</button>
        <button onClick={() => this.mergesort()}>Merge Sort</button>
-       <button onClick={() => this.quicksort()}>Quick Sort</button>
+       <button onClick={() => this.selectionSort()}>Selection Sort</button>
+       <button onClick={() => this.quicksort()}>quick Sort</button>
        <button onClick={() => this.heapsort()}>Heap Sort</button>
        <button onClick={() => this.bubblesort()}>Bubble Sort</button>
-       <button onClick={() => this.testSortingAlgorithms()}>test sorting algorithm</button>
           </div>
       );
   }
