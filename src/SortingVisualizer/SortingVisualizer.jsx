@@ -47,15 +47,13 @@ export default class SortingVisualizer extends React.Component{
       }
       else {
           const [, barIndex, newHeight] = animations[i];
-          if (barIndex === -1) {
-              continue;
-          }
           const barStyle = arrayBars[barIndex].style;
           setTimeout(() => {
               barStyle.height = `${newHeight}px`;
           }, i * ANIMATION_SPEED_MS);  
       }
   }
+
 }
 
 bubblesort(){
@@ -75,9 +73,6 @@ bubblesort(){
       }
       else {
           const [, barIndex, newHeight] = animations[i];
-          if (barIndex === -1) {
-              continue;
-          }
           const barStyle = arrayBars[barIndex].style;
           setTimeout(() => {
               barStyle.height = `${newHeight}px`;
@@ -102,9 +97,6 @@ bubblesort(){
         }
         else {
             const [, barIndex, newHeight] = animations[i];
-            if (barIndex === -1) {
-                continue;
-            }
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
@@ -129,9 +121,6 @@ bubblesort(){
         }
         else {
             const [, barIndex, newHeight] = animations[i];
-            if (barIndex === -1) {
-                continue;
-            }
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
@@ -156,9 +145,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
         }
         else {
             const [, barIndex, newHeight] = animations[i];
-            if (barIndex === -1) {
-                continue;
-            }
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
@@ -186,9 +172,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             }
             else {
                 const [, barIndex, newHeight] = animations[i];
-                if (barIndex === -1) {
-                    continue;
-                }
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
@@ -213,9 +196,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             }
             else {
                 const [, barIndex, newHeight] = animations[i];
-                if (barIndex === -1) {
-                    continue;
-                }
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
@@ -241,9 +221,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             }
             else {
                 const [, barIndex, newHeight] = animations[i];
-                if (barIndex === -1) {
-                    continue;
-                }
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
@@ -268,9 +245,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             }
             else {
                 const [, barIndex, newHeight] = animations[i];
-                if (barIndex === -1) {
-                    continue;
-                }
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
@@ -297,9 +271,6 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             }
             else {
                 const [, barIndex, newHeight,] = animations[i];
-                if (barIndex === -1) {
-                    continue;
-                }
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
@@ -342,6 +313,7 @@ const [animations] = getCocktailSortAnimations(this.state.array);
               </div>
        ))}
        </div>
+
        </div>
       );
   }
