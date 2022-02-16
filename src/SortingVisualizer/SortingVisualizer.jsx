@@ -9,7 +9,9 @@ import {getCocktailSortAnimations} from '../SortingAlgorithms/cocktailSort.js';
 import {getCombSortAnimations} from '../SortingAlgorithms/combSort.js';
 import {getShellSortAnimations} from '../SortingAlgorithms/shellSort.js';
 import './SortingVisualizer.css';
-const ANIMATION_SPEED_MS = 20;
+const ANIMATION_SPEED_MS_SBC = 0.5;
+const ANIMATION_SPEED_MS_ISC = 1.5;
+const ANIMATION_SPEED_MS_MQH = 5;
 const NUMBER_OF_ARRAY_BARS = 101;
 const PRIMARY_COLOR = '#015c5c';
 const SECONDARY_COLOR = 'red';
@@ -30,8 +32,32 @@ export default class SortingVisualizer extends React.Component{
       }
       this.setState({array});
   }
+  toggleButtons(select){
+    const newBtn = document.getElementById('buttonc');
+    const newBtn1 = document.getElementById('buttonc1');
+    const newBtn2 = document.getElementById('buttonc2');
+    const newBtn3 = document.getElementById('buttonc3');
+    const newBtn4= document.getElementById('buttonc4');
+    const newBtn5 = document.getElementById('buttonc5');
+    const newBtn6 = document.getElementById('buttonc6');
+    const newBtn7 = document.getElementById('buttonc7');
+    const newBtn8 = document.getElementById('buttonc8');
+    const newBtn9 = document.getElementById('buttonc9');
+    newBtn.disabled = select;
+    newBtn1.disabled = select;
+    newBtn2.disabled = select;
+    newBtn3.disabled = select;
+    newBtn4.disabled = select;
+    newBtn5.disabled = select;
+    newBtn6.disabled = select;
+    newBtn7.disabled = select;
+    newBtn8.disabled = select;
+    newBtn9.disabled = select;
+}
   mergesort(){
+    this.toggleButtons(true);
     const [animations] = getMergeSortAnimations(this.state.array);
+    var time = 0;
   for (let i = 0; i < animations.length; i++) {
     const [desc, barOneIdx, barTwoIdx] = animations[i];
       const ColorChange = desc === "compare1" || desc === "compare2";
@@ -40,24 +66,30 @@ export default class SortingVisualizer extends React.Component{
           const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
           const barOneStyle = arrayBars[barOneIdx].style;
           const barTwoStyle = arrayBars[barTwoIdx].style;
+          time = i * ANIMATION_SPEED_MS_MQH;
           setTimeout(() => {
               barOneStyle.background = color;
               barTwoStyle.background = color;
-          }, i * ANIMATION_SPEED_MS);
+          }, i * ANIMATION_SPEED_MS_MQH);
       }
       else {
+        time = i * ANIMATION_SPEED_MS_MQH;
           const [, barIndex, newHeight] = animations[i];
           const barStyle = arrayBars[barIndex].style;
           setTimeout(() => {
               barStyle.height = `${newHeight}px`;
-          }, i * ANIMATION_SPEED_MS);  
+          }, i * ANIMATION_SPEED_MS_MQH);  
       }
   }
-
+  setTimeout(() => {
+    this.toggleButtons(false);
+}, time)
 }
 
 bubblesort(){
+    this.toggleButtons(true);
   const [animations] = getBubbleSortAnimations(this.state.array);
+  var time = 0;
   for (let i = 0; i < animations.length; i++) {
     const [desc, barOneIdx, barTwoIdx] = animations[i];
       const ColorChange = desc === "compare1" || desc === "compare2";
@@ -66,22 +98,29 @@ bubblesort(){
           const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
           const barOneStyle = arrayBars[barOneIdx].style;
           const barTwoStyle = arrayBars[barTwoIdx].style;
+          time = i * ANIMATION_SPEED_MS_SBC;
           setTimeout(() => {
               barOneStyle.background = color;
               barTwoStyle.background = color;
-          }, i * ANIMATION_SPEED_MS);
+          }, i * ANIMATION_SPEED_MS_SBC);
       }
       else {
+        time = i * ANIMATION_SPEED_MS_SBC;
           const [, barIndex, newHeight] = animations[i];
           const barStyle = arrayBars[barIndex].style;
           setTimeout(() => {
               barStyle.height = `${newHeight}px`;
-          }, i * ANIMATION_SPEED_MS);  
+          }, i * ANIMATION_SPEED_MS_SBC);  
       }
   }
+  setTimeout(() => {
+    this.toggleButtons(false);
+}, time)
  }
   selectionSort(){
+    this.toggleButtons(true);
     const [animations] = getSelectionSortAnimations(this.state.array);
+    var time = 0;
     for (let i = 0; i < animations.length; i++) {
       const [desc, barOneIdx, barTwoIdx] = animations[i];
         const ColorChange = desc === "compare1" || desc === "compare2";
@@ -90,22 +129,29 @@ bubblesort(){
             const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
             const barOneStyle = arrayBars[barOneIdx].style;
             const barTwoStyle = arrayBars[barTwoIdx].style;
+            time = i * ANIMATION_SPEED_MS_SBC;
             setTimeout(() => {
                 barOneStyle.background = color;
                 barTwoStyle.background = color;
-            }, i * ANIMATION_SPEED_MS);
+            }, i * ANIMATION_SPEED_MS_SBC);
         }
         else {
+            time = i * ANIMATION_SPEED_MS_SBC;
             const [, barIndex, newHeight] = animations[i];
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
-            }, i * ANIMATION_SPEED_MS);  
+            }, i * ANIMATION_SPEED_MS_SBC);  
         }
     }
+    setTimeout(() => {
+        this.toggleButtons(false);
+    }, time)
    }
    insertionsort(){
+    this.toggleButtons(true);
     const [animations] = getInsertionSortAnimations(this.state.array);
+    var time = 0;
     for (let i = 0; i < animations.length; i++) {
         const [desc, barOneIdx, barTwoIdx] = animations[i];
         const ColorChange = desc === "compare1" || desc === "compare2";
@@ -114,22 +160,29 @@ bubblesort(){
             const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
             const barOneStyle = arrayBars[barOneIdx].style;
             const barTwoStyle = arrayBars[barTwoIdx].style;
+            time = i * ANIMATION_SPEED_MS_ISC;
             setTimeout(() => {
                 barOneStyle.background = color;
                 barTwoStyle.background = color;
-            }, i * ANIMATION_SPEED_MS);
+            }, i * ANIMATION_SPEED_MS_ISC);
         }
         else {
+            time = i * ANIMATION_SPEED_MS_ISC;
             const [, barIndex, newHeight] = animations[i];
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
-            }, i * ANIMATION_SPEED_MS);  
+            }, i * ANIMATION_SPEED_MS_ISC);  
         }
     }
+    setTimeout(() => {
+        this.toggleButtons(false);
+    }, time)
 }
 cocktailsort(){
+    this.toggleButtons(true);
 const [animations] = getCocktailSortAnimations(this.state.array);
+var time = 0;
     for (let i = 0; i < animations.length; i++) {
       const [desc, barOneIdx, barTwoIdx] = animations[i];
         const ColorChange = desc === "compare1" || desc === "compare2";
@@ -138,22 +191,29 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
             const barOneStyle = arrayBars[barOneIdx].style;
             const barTwoStyle = arrayBars[barTwoIdx].style;
+            time = i * ANIMATION_SPEED_MS_SBC;
             setTimeout(() => {
                 barOneStyle.background = color;
                 barTwoStyle.background = color;
-            }, i * ANIMATION_SPEED_MS);
+            }, i * ANIMATION_SPEED_MS_SBC);
         }
         else {
+            time = i * ANIMATION_SPEED_MS_SBC;
             const [, barIndex, newHeight] = animations[i];
             const barStyle = arrayBars[barIndex].style;
             setTimeout(() => {
                 barStyle.height = `${newHeight}px`;
-            }, i * ANIMATION_SPEED_MS);  
+            }, i * ANIMATION_SPEED_MS_SBC);  
         }
     }
+    setTimeout(() => {
+        this.toggleButtons(false);
+    }, time)
    }
    quicksort(){
+    this.toggleButtons(true);
     const [animations] = getQuickSortAnimations(this.state.array);
+    var time = 0;
         for (let i = 0; i < animations.length; i++) {
           const [desc, barOneIdx, barTwoIdx] = animations[i];
             const ColorChange = desc === "compare1" || desc === "compare2" || desc === "pivot1";
@@ -164,23 +224,30 @@ const [animations] = getCocktailSortAnimations(this.state.array);
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 const barpivot = arrayBars[barOneIdx].style;
+                time = i * ANIMATION_SPEED_MS_MHQ;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
                     barpivot.background = color1;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS_MQH);
             }
             else {
+                time = i * ANIMATION_SPEED_MS_MHQ;
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);  
+                }, i * ANIMATION_SPEED_MS_MQH);  
             }
         }
+        setTimeout(() => {
+            this.toggleButtons(false);
+        }, time)
   }
   heapSort() {
+    this.toggleButtons(true);
     const [animations] = getHeapSortAnimations(this.state.array);
+    var time = 0;
         for (let i = 0; i < animations.length; i++) {
             const [desc, barOneIdx, barTwoIdx] = animations[i];
             const ColorChange = desc === "compare1" || desc === "compare2";
@@ -189,23 +256,30 @@ const [animations] = getCocktailSortAnimations(this.state.array);
                 const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
+                time = i * ANIMATION_SPEED_MS_MHQ;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS_MQH);
             }
             else {
+                time = i * ANIMATION_SPEED_MS_MHQ;
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
                     barStyle.backgroundColor= '#015c5c';
-                }, i * ANIMATION_SPEED_MS);  
+                }, i * ANIMATION_SPEED_MS_MQH);  
             }
         }
+        setTimeout(() => {
+            this.toggleButtons(false);
+        }, time)
   }
   combSort(){
+    this.toggleButtons(true);
     const [animations] = getCombSortAnimations(this.state.array);
+    var time = 0;
         for (let i = 0; i < animations.length; i++) {
             const [desc, barOneIdx, barTwoIdx] = animations[i];
             const ColorChange = desc === "compare1" || desc === "compare2";
@@ -214,22 +288,29 @@ const [animations] = getCocktailSortAnimations(this.state.array);
                 const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
+                time = i * ANIMATION_SPEED_MS_ISC;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS_ISC);
             }
             else {
+                time = i * ANIMATION_SPEED_MS_ISC;
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);  
+                }, i * ANIMATION_SPEED_MS_ISC);  
             }
         }
+        setTimeout(() => {
+            this.toggleButtons(false);
+        }, time)
   }
   cocktailsort(){
+    this.toggleButtons(true);
     const [animations] = getCocktailSortAnimations(this.state.array);
+    var time = 0;
         for (let i = 0; i < animations.length; i++) {
           const [desc, barOneIdx, barTwoIdx] = animations[i];
             const ColorChange = desc === "compare1" || desc === "compare2";
@@ -238,22 +319,29 @@ const [animations] = getCocktailSortAnimations(this.state.array);
                 const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
+                time = i * ANIMATION_SPEED_MS_SBC;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS_SBC);
             }
             else {
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
+                time = i * ANIMATION_SPEED_MS_SBC;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);  
+                }, i * ANIMATION_SPEED_MS_SBC);  
             }
         }
+        setTimeout(() => {
+            this.toggleButtons(false);
+        }, time)
   }
   shellsort(){
+    this.toggleButtons(true);
     const [animations] = getShellSortAnimations(this.state.array);
+    var time = 0;
         for (let i = 0; i < animations.length; i++) {
           const [desc, barOneIdx, barTwoIdx,barThreeIdx] = animations[i];
             const ColorChange = desc === "compare1" || desc === "compare2";
@@ -263,20 +351,26 @@ const [animations] = getCocktailSortAnimations(this.state.array);
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 const barThreeStyle = arrayBars[barThreeIdx].style;
+                time = i * ANIMATION_SPEED_MS_ISC;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
                     barThreeStyle.background = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS_ISC);
             }
             else {
+                time = i * ANIMATION_SPEED_MS_ISC;
                 const [, barIndex, newHeight,] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
                     barStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);  
+                    barStyle.backgroundColor= '#015c5c';
+                }, i * ANIMATION_SPEED_MS_ISC);  
             }
         }
+        setTimeout(() => {
+            this.toggleButtons(false);
+        }, time)
   }
    showcatweb() {
     this.restArray();
@@ -295,16 +389,16 @@ const [animations] = getCocktailSortAnimations(this.state.array);
             </div>
           <div className="array-container">
           <div className="button-area">
-       <button className="primary-btn" onClick={()=>this.showcatweb()}>Reset Array</button>
-       <button onClick={() => this.mergesort()}>Merge Sort</button>
-       <button onClick={() => this.selectionSort()}>Selection Sort</button>
-       <button onClick={() => this.bubblesort()}>Bubble Sort</button>
-       <button onClick={() => this.insertionsort()}>Insertion Sort</button>
-       <button onClick={() => this.shellsort()}>Shell Sort</button>
-       <button onClick={() => this.combSort()}>Comb Sort</button>
-       <button onClick={() => this.cocktailsort()}>Cocktail Sort</button>
-       <button onClick={() => this.quicksort()}>Quick Sort</button>
-       <button onClick={() => this.heapSort()}>Heap Sort</button>
+       <button id="buttonc" className="primary-btn" onClick={()=>this.showcatweb()}>Reset Array</button>
+       <button id="buttonc1" onClick={() => this.mergesort()}>Merge Sort</button>
+       <button id="buttonc2" onClick={() => this.selectionSort()}>Selection Sort</button>
+       <button id="buttonc3" onClick={() => this.bubblesort()}>Bubble Sort</button>
+       <button id="buttonc4" onClick={() => this.insertionsort()}>Insertion Sort</button>
+       <button id="buttonc5" onClick={() => this.shellsort()}>Shell Sort</button>
+       <button id="buttonc6" onClick={() => this.combSort()}>Comb Sort</button>
+       <button id="buttonc7" onClick={() => this.cocktailsort()}>Cocktail Sort</button>
+       <button id="buttonc8" onClick={() => this.quicksort()}>Quick Sort</button>
+       <button id="buttonc9" onClick={() => this.heapSort()}>Heap Sort</button>
       </div>
           {array.map((value,idx) => (
               <div className="array-bar" 
