@@ -28,7 +28,7 @@ export default class SortingVisualizer extends React.Component{
   restArray(){
       const array = [];
       for(let i=0;i<NUMBER_OF_ARRAY_BARS;i++){
-          array.push(randomIntFromInterval(5,467));
+          array.push(randomIntFromInterval(5,435));
       }
       this.setState({array});
   }
@@ -224,7 +224,7 @@ var time = 0;
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 const barpivot = arrayBars[barOneIdx].style;
-                time = i * ANIMATION_SPEED_MS_MHQ;
+                time = i * ANIMATION_SPEED_MS_MQH;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
@@ -232,7 +232,7 @@ var time = 0;
                 }, i * ANIMATION_SPEED_MS_MQH);
             }
             else {
-                time = i * ANIMATION_SPEED_MS_MHQ;
+                time = i * ANIMATION_SPEED_MS_MQH;
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {
@@ -249,21 +249,21 @@ var time = 0;
     const [animations] = getHeapSortAnimations(this.state.array);
     var time = 0;
         for (let i = 0; i < animations.length; i++) {
-            const [desc, barOneIdx, barTwoIdx] = animations[i];
-            const ColorChange = desc === "compare1" || desc === "compare2";
+          const [desc, barOneIdx, barTwoIdx] = animations[i];
+            const ColorChange = desc === "compare1" || desc === "compare2" ;
             const arrayBars = document.getElementsByClassName('array-bar');
             if (ColorChange) {
                 const color = (desc === "compare1") ? SECONDARY_COLOR : PRIMARY_COLOR;
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
-                time = i * ANIMATION_SPEED_MS_MHQ;
+                time = i * ANIMATION_SPEED_MS_MQH;
                 setTimeout(() => {
                     barOneStyle.background = color;
                     barTwoStyle.background = color;
                 }, i * ANIMATION_SPEED_MS_MQH);
             }
             else {
-                time = i * ANIMATION_SPEED_MS_MHQ;
+                time = i * ANIMATION_SPEED_MS_MQH;
                 const [, barIndex, newHeight] = animations[i];
                 const barStyle = arrayBars[barIndex].style;
                 setTimeout(() => {

@@ -1,7 +1,7 @@
 export function getHeapSortAnimations(array){
     const animations = [];
     heapSort(array,animations);
-    return animations;
+    return [animations];
 }
 
 function swap(array,firstIdx,secondIdx){
@@ -18,22 +18,12 @@ function heapSort(array,animations){
     }
 
     for(let k = array.length -1; k > 0; k--){
-        animations.push([0,k,'max']);
-        animations.push([0,k,'max']);
+        animations.push(['swap',0,array[k]]);
+        animations.push(['swap',k,array[0]]);
         swap(array,0,k);
         heapDown(array,k,0,animations);
     }
-    animations.push([0,0,'max']);
-    animations.push([0,0,'max']);
-    //check to see if array is sorted so we know if animations are broken or if the array isnt sorted properly
-    var arrayS = "[";
-    for(let j = 0; j < array.length; j++){
-            arrayS += array[j].toString() + ",";
-    }
-    arrayS += "]";
-    console.log(arrayS);
 }
-
 function heapDown(arr, length, index,animations){
     var largest = index;
     var left = 2 * index + 1;
@@ -48,8 +38,10 @@ function heapDown(arr, length, index,animations){
     }
 
     if(largest != index){
-        animations.push([index,largest,'reg']);
-        animations.push([index,largest, 'reg']);
+        animations.push(['compare1',index,largest]);
+        animations.push(['compare2',index,largest]);
+        animations.push(['swap',index,arr[largest]]);
+        animations.push(['swap',largest,arr[index]]);
         swap(arr,largest,index);
         heapDown(arr,length,largest,animations);
     }
